@@ -28,3 +28,30 @@ In: 5 5 5 5 5     Out: CONSTANT
 package main
 
 // Ваш код
+
+import (
+	"fmt"
+)
+
+func main() {
+	var a, b, c, d, e int
+	fmt.Scan(&a)
+	fmt.Scan(&b)
+	fmt.Scan(&c)
+	fmt.Scan(&d)
+	fmt.Scan(&e)
+	switch {
+	case a == b && b == c && c == d && d == e:
+		fmt.Println("CONSTANT")
+	case a < b && b < c && c < d && d < e:
+		fmt.Println("ASCENDING")
+	case a <= b && b <= c && c <= d && d <= e:
+		fmt.Println("WEAKLY ASCENDING")
+	case a > b && b > c && c > d && d > e:
+		fmt.Println("DESCENDING")
+	case a >= b && b >= c && c >= d && d >= e:
+		fmt.Println("WEAKLY DESCENDING")
+	default:
+		fmt.Println("RANDOM")
+	}
+}
