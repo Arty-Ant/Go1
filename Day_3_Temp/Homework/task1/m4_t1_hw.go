@@ -34,8 +34,7 @@ func main() {
 		return
 	}
 	codeArrey := strings.Split(code, "") //преобразовываем код в массив
-	//fmt.Println(codeArrey)
-	mapper := make(map[string]string) //создание мапы
+	mapper := make(map[string]string)    //создание мапы
 	//генерируем мапу в стиле [00:a] для перевода чисел в буквы
 	for r, i := rune('a'), 0; i <= 26; r, i = r+1, i+1 {
 		mapper[fmt.Sprintf("%02d", i)] = string(r)
@@ -43,26 +42,19 @@ func main() {
 			mapper[fmt.Sprintf("%02d", i)] = " "
 		}
 	}
-	//fmt.Println(mapper)
 	//Берём первое значение мапы и сравниваем со всеми слайсами через цикл (поэлементно)
 	for a, b := 0, 2; b <= len(codeArrey); a, b = a+2, b+2 { //цикл на генерацию 2-х значений для слайсов
 		for key := range mapper { //цикл мапы с объявлением переменной ключа "00"
 			var codeKey string
 			var subResult string
-			codeSlice := codeArrey[a:b] //взятия срезов из массива кода на базе значений из цикла
-			//fmt.Println("Срез кода:", codeSlice)
-			keyArrey := strings.Split(key, "") //преобразование ключа в массив
-			//fmt.Println("Массив ключа:", keyArrey)
+			codeSlice := codeArrey[a:b]          //взятия срезов из массива кода на базе значений из цикла
+			keyArrey := strings.Split(key, "")   //преобразование ключа в массив
 			for index, value := range keyArrey { //цикл сравнения значений слайса кода и массива ключа
-				//fmt.Println("Значение ключа:", value)
-				//fmt.Println("Значение среза кода:", codeSlice[index])
 				if codeSlice[index] == value { //позначимое сравнение значений массива и слайса через индекс
 					codeKey += value
 					if len(strings.Split(codeKey, "")) == 2 {
 						subResult = codeKey
-					} //else {
-					//fmt.Println("Нет совпадения")
-					//}
+					}
 				}
 			}
 			result += mapper[subResult]
@@ -84,16 +76,11 @@ func main() {
 			mapper2[" "] = fmt.Sprintf("%02d", i)
 		}
 	}
-	//fmt.Println(mapper2)
 	//Берём первое значение массива букв и сравниваем со значениями мапы
 	for _, letter := range wordArrey { //цикл вывода букв
 		for key := range mapper2 { //цикл мапы с объявлением переменной значения "a"
-			//fmt.Println(mapper2[key])
-			//fmt.Println(key)
-			//fmt.Println(letter)
 			if letter == key {
 				newResult += mapper2[key]
-				//fmt.Println(newResult)
 			}
 		}
 	}
